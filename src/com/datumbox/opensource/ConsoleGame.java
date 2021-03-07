@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import edu.princeton.cs.algs4.StdDraw;
+
 /**
  * The main class of the Game.
  * 
@@ -50,14 +52,34 @@ public class ConsoleGame {
                 Scanner sc = new Scanner (System.in);     
                 choice = sc.nextInt();
                 switch (choice) {
-                    case 1:  playGame();
-                             break;
-                    case 2:  calculateAccuracy();
-                             break;
-                    case 3:  help();
-                             break;
-                    case 4:  return;
-                    default: throw new Exception();
+                    case 0:
+                        StdDraw.setXscale(0, 8);
+                        StdDraw.setYscale(0, 8);
+
+                        StdDraw.line(0, 2, 8, 2);
+                        StdDraw.line(0, 4, 8, 4);
+                        StdDraw.line(0, 6, 8, 6);
+
+                        StdDraw.line(2, 0, 2, 8);
+                        StdDraw.line(4, 0, 4, 8);
+                        StdDraw.line(6, 0, 6, 8);
+
+                        StdDraw.text(1,1,"2");
+
+                        break;
+                    case 1:
+                        playGame();
+                        break;
+                    case 2:
+                        calculateAccuracy();
+                        break;
+                    case 3:
+                        help();
+                        break;
+                    case 4:
+                        return;
+                    default:
+                        throw new Exception();
                 }
             }
             catch(Exception e) {
@@ -202,7 +224,30 @@ public class ConsoleGame {
         System.out.println();
         System.out.println("Hint:\t" + hint);
         System.out.println();
-        
+
+        StdDraw.setXscale(0, 8);
+        StdDraw.setYscale(0, 8);
+
+        StdDraw.clear();
+
+        StdDraw.line(0, 2, 8, 2);
+        StdDraw.line(0, 4, 8, 4);
+        StdDraw.line(0, 6, 8, 6);
+
+        StdDraw.line(2, 0, 2, 8);
+        StdDraw.line(4, 0, 4, 8);
+        StdDraw.line(6, 0, 6, 8);
+
+        for(int i=0;i<boardArray.length;++i){
+            for(int j=0;j<boardArray[i].length;++j) {
+                if(boardArray[i][j]==0)
+                    continue;
+                StdDraw.text(j*2+1,(3-i)*2+1,Integer.toString(boardArray[i][j]));
+                StdDraw.square(j*2+1,(3-i)*2+1,0.75);
+            }
+        }
+
+        /*
         for(int i=0;i<boardArray.length;++i) {
             for(int j=0;j<boardArray[i].length;++j) {
                 System.out.print(boardArray[i][j] + "\t");
@@ -210,5 +255,6 @@ public class ConsoleGame {
             System.out.println();
         }
         System.out.println("-------------------------");
+         */
     }
 }
